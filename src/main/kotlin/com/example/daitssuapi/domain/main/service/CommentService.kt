@@ -8,6 +8,7 @@ import com.example.daitssuapi.domain.main.model.entity.Comment
 import com.example.daitssuapi.domain.main.model.repository.ArticleRepository
 import com.example.daitssuapi.domain.main.model.repository.CommentRepository
 import com.example.daitssuapi.domain.main.model.repository.UserRepository
+import jakarta.transaction.Transactional
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
@@ -17,7 +18,11 @@ class CommentService(
     private val userRepository: UserRepository,
     private val articleRepository: ArticleRepository
 ) {
+    @Transactional
     fun writeComment(commentWriteRequest: CommentWriteRequest): CommentWriteResponse {
+        if (commentWriteRequest.nickname == null)
+            throw DefaultException(errorCode = ErrorCode.NICKNAME_REQUIRED)
+
         val user = userRepository.findByNickname(commentWriteRequest.nickname)
             ?: throw DefaultException(errorCode = ErrorCode.USER_NOT_FOUND)
 

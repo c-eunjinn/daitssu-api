@@ -2,6 +2,8 @@ DELETE FROM course.user_course_relation;
 DELETE FROM course.course;
 DELETE FROM main.users;
 DELETE FROM main.department;
+DELETE FROM main.article;
+DELETE FROM main.comment;
 
 INSERT INTO main.department(id, name) VALUES
     (1, 'computer'),
@@ -26,3 +28,14 @@ INSERT INTO course.user_course_relation(id, user_id, course_id, register_status)
     (3, 3, 3, 'ACTIVE'),
     (4, 1, 4, 'ACTIVE'),
     (5, 2, 3, 'ACTIVE');
+
+INSERT INTO main.article(id, user_id, topic, title, content) VALUES
+    (1111, 1, 'CHAT', 'hello', '안녕하세요 저는'),
+    (2222, 2, 'QUESTION', 'ask', '궁금한게 있어요'),
+    (3333, 3, 'INFORMATION', 'information', '내일 학식은');
+
+INSERT INTO main.comment(id, article_id, user_id, content) VALUES
+   (1111, 1111, 2, '안녕하세요~~~'),
+   (2222, 1111, 3, 'hi!'),
+   (3333, 2222, 1, '이건 이렇고'),
+   (4444, 3333, 3, '와 맛있겠다');
