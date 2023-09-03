@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/daitssu/community/comment")
+@RequestMapping("/community/comment")
 class CommentController(
     val commentService: CommentService
 ) {
